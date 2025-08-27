@@ -1,0 +1,7 @@
+[project]
+name = "geocomp"
+version = "0.1.0"
+description = "Scripts for my master's class INF2604 - Computational Geometry"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
