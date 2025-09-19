@@ -39,9 +39,20 @@ Por fim, esse processo é replicado para os formatos de polígono fornecidos no 
 
 ## Resultados do Algoritmo
 
+Para montar os polígonos de teste, utilizamos tuplas de coordenadas (x, y) representando os vértices na ordem em que aparecem no polígono. A seguir, apresento os resultados obtidos com o algoritmo implementado.
+
 Iniciando com dois formatos mais simples, como o de "seta" e um formato de letra "C", o algoritmo conseguiu triangulá-los corretamente, como pode ser visto nas imagens abaixo:
 
 ![Seta para a direita](resources/arrow_01.png)
+
+Valores de entrada para a seta:
+
+```python
+arrow = [
+    (0, 0), (50, 0), (50, -15), (85, 15),
+    (50, 45), (50, 30), (0, 30), (15, 15),
+]
+```
 
 Valores de simulação para a seta:
 
@@ -51,6 +62,15 @@ Valores de simulação para a seta:
 - Área total dos triângulos: 1300 px²
 
 ![Letra C](resources/c_shape_02.png)
+
+Valores de entrada para a letra C:
+
+```python
+c_shape = [
+    (0, 40), (50, 40), (50, 30), (15, 30),
+    (15, 10), (50, 10), (50, 0), (0, 0),
+]
+```
 
 Valores de simulação para a letra C:
 
@@ -63,6 +83,16 @@ Agora, replicando os formatos mais complexos dados no enunciado, o algoritmo tam
 
 ![Polígono complexo 1](resources/complex_form_01.png)
 
+Valores de entrada para o polígono complexo 1:
+
+```python
+polygon_experiment_1 = [
+    (595, 379), (509, 399), (483, 479), (439, 480), (429, 444),
+    (321, 444), (363, 474), (240, 474), (278, 440), (232, 356),
+    (323, 376), (321, 305), (415, 370), (389, 294), (482, 358),
+]
+```
+
 Valores de simulação para o polígono complexo 1:
 
 - Número de vértices: 15
@@ -71,6 +101,17 @@ Valores de simulação para o polígono complexo 1:
 - Área total dos triângulos: 30827,50 px²
 
 ![Polígono complexo 2](resources/complex_form_02.png)
+
+Valores de entrada para o polígono complexo 2:
+
+```python
+polygon_experiment_2 = [
+    (388, 378), (512, 466), (456, 297), (622, 195), (395, 79),
+    (290, 218), (164, 132), (79, 337), (234, 320), (268, 481),
+    (333, 366), (284, 369), (271, 285), (166, 275), (182, 216),
+    (347, 257), (372, 188), (497, 195), (424, 280), (436, 352),
+]
+```
 
 Valores de simulação para o polígono complexo 2:
 
