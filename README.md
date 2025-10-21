@@ -33,6 +33,10 @@ As of right now, we're in the middle of the semester (30-august-2025). The list 
   - Code: [Jupyter Notebook](assignments/03_2d_convex_hull/2d_convex_hull.ipynb).
   - Report: [Report](assignments/03_2d_convex_hull/README.md).
 
+- Assignment 4: Delaunay Triangulation. Implement the Incremental and Divide-and-Conquer algorithms for Delaunay triangulation in 2D.
+  - Code: [Jupyter Notebook](assignments/04_delaunay/delaunay.ipynb).
+  - Report: [Report](assignments/04_delaunay/README.md).
+
 ## Markdown over $\LaTeX$
 
 I'm personally a fan of using Markdown for documentation, notes and reports because of its simplicity, readability and ease of use. While $\LaTeX$ is powerful for typesetting complex mathematical formulas, Markdown strikes a good balance between ease of use and functionality for most documentation needs. Also, both export in PDF and are great for versioning with git, so, please, don't get angry just because I'm doing academic work with Markdown over $\LaTeX$.
