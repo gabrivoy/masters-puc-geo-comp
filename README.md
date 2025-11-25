@@ -4,9 +4,9 @@ This repository contains implementations of various computational geometry algor
 
 ## Environment setup for reproducibility
 
-This repository uses Astral's `uv` as the main Python package and project manager. You can find more about `uv` in: https://docs.astral.sh/uv/.
+This repository uses Astral's `uv` as the main Python package and project manager. You can find more about `uv` in: [the official uv website](https://docs.astral.sh/uv/).
 
-If you have `uv` installed in your machine, you can run `uv sync` inside the repository directory. This will install the needed libraries. This repository uses the release version of Python 3.13, so bear in mind that you'll need to have this Python version installed, luckily, `uv` is also able to install and manage Python versions (https://docs.astral.sh/uv/guides/install-python/).
+If you have `uv` installed in your machine, you can run `uv sync` inside the repository directory. This will install the needed libraries. This repository uses the release version of Python 3.13, so bear in mind that you'll need to have this Python version installed, luckily, `uv` is also able to install and manage Python versions: [uv guides: install python](https://docs.astral.sh/uv/guides/install-python/).
 
 ## Folder structure
 
@@ -36,6 +36,13 @@ As of right now, we're in the middle of the semester (30-august-2025). The list 
 - Assignment 4: Delaunay Triangulation. Implement the Incremental and Divide-and-Conquer algorithms for Delaunay triangulation in 2D.
   - Code: [Jupyter Notebook](assignments/04_delaunay/delaunay.ipynb).
   - Report: [Report](assignments/04_delaunay/README.md).
+
+### Final Project
+
+The final project consists of studying the 3D Convex Hull problem, and implementing an algorithm to solve it. The chosen algorithm was the Incremental algorithm, which is an extension of the 2D version studied during the course. The implementation can be found in the following links:
+
+- Code: [Jupyter Notebook](final_project/3d_convex_hull.ipynb).
+- Report: [Report](final_project/README.md).
 
 ## Markdown over $\LaTeX$
 

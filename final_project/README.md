@@ -15,7 +15,7 @@
   - [Convexidade em 3D](#convexidade-em-3d)
   - [Definição de Fecho Convexo](#definição-de-fecho-convexo)
   - [Representação Poliedral do Fecho Convexo 3D](#representação-poliedral-do-fecho-convexo-3d)
-  - [Teste de Orientação em 3D (Volume Assinado)](#teste-de-orientação-em-3d-volume-assinado)
+  - [Teste de Orientação em 3D](#teste-de-orientação-em-3d)
 - [Algoritmos para Fecho Convexo 3D](#algoritmos-para-fecho-convexo-3d)
   - [Considerações de Complexidade](#considerações-de-complexidade)
   - [Algoritmo Incremental 3D](#algoritmo-incremental-3d)
@@ -27,7 +27,6 @@
   - [Experimento 3 - Comparação de Performance com SciPy (Quickhull)](#experimento-3---comparação-de-performance-com-scipy-quickhull)
 - [Conclusão](#conclusão)
 - [Referências](#referências)
-
 
 ## Introdução e motivação
 
@@ -120,7 +119,7 @@ Um conjunto $C$ é convexo se e somente se contém todas as combinações convex
 Dado um conjunto finito de pontos $S = \{p_1, p_2, \dots, p_n\} \subset \mathbb{R}^3$, o fecho convexo de $S$, denotado por $\text{conv}(S)$, é definido como o menor conjunto convexo que contém $S$. Equivalentemente [1,2]:
 
 $$
-\text{conv}(S) = \Bigg\{ \sum_{i=1}^{n} \lambda_i p_i \mid \lambda_i \ge 0,\; \sum_{i=1}^{n} \lambda_i = 1 \Bigg\}.
+\text{conv}(S) = \{ \sum_{i=1}^{n} \lambda_i p_i \mid \lambda_i \ge 0,\; \sum_{i=1}^{n} \lambda_i = 1 \}.
 $$
 
 Outra caracterização importante é:
@@ -136,15 +135,11 @@ isto é, o fecho convexo é a interseção de todos os conjuntos convexos que co
 Em $\mathbb{R}^3$, o fecho convexo de um conjunto finito de pontos é um poliedro convexo. Um poliedro convexo pode ser descrito de duas maneiras principais [1]:
 
 - Representação por vértices (forma V): como o fecho convexo de um conjunto finito de pontos $V = \{v_1, \dots, v_h\}$, ou seja, $P = \text{conv}(V)$;
-- Representação por semi-espaços (forma H): como interseção finita de semi-espaços do tipo:
-  $$
-  H_i = \{ x \in \mathbb{R}^3 \mid a_i \cdot x \le b_i \},
-  $$
-  de modo que $P = \bigcap_{i=1}^{m} H_i$.
+- Representação por semi-espaços (forma H): como interseção finita de semi-espaços do tipo: $H_i = \{ x \in \mathbb{R}^3 \mid a_i \cdot x \le b_i \}$, de modo que $P = \bigcap_{i=1}^{m} H_i$.
 
 Algoritmos de fecho convexo em geral recebem a entrada na forma V (um conjunto de pontos) e produzem uma estrutura intermediária que pode ser vista como uma descrição mista: um conjunto de vértices, mais faces triangulares orientadas, cada uma correspondendo a um semi-espaço que contém o poliedro. Internamente, muitos algoritmos mantêm ainda uma estrutura de adjacência entre faces, arestas e vértices, necessária para atualizar o poliedro durante a construção [1,3].
 
-### Teste de Orientação em 3D (Volume Assinado)
+### Teste de Orientação em 3D
 
 Em 2D, o teste de orientação (esquerda/direita) é baseado no sinal de um determinante 2x2, que indica se três pontos estão orientados em sentido horário ou anti-horário. Em 3D, o análogo é o teste de orientação de quatro pontos $a, b, c, p \in \mathbb{R}^3$, que avalia o volume assinado do tetraedro $(a, b, c, p)$.
 
@@ -256,7 +251,7 @@ Este pseudocódigo captura a essência da implementação realizada, omitindo de
 
 Foram realizadas 3 experimentações principais para avaliar o comportamento do algoritmo incremental implementado. Uma gerando uma nuvem aleatória de 60 pontos e outra com 120 pontos, ambas dentro de um cubo de lado 20 unidades. As imagens geradas mostram o fecho convexo resultante para cada conjunto de pontos. Além disso, foi feita uma simples comparação com a implementação do algoritmo Quickhull presente na biblioteca SciPy, observando qualitativamente o desempenho e a robustez dos dois algoritmos.
 
-### Experimento 1 - 60 pontos aleatórios em um cubo de lado 20 unidades.
+### Experimento 1 - 60 pontos aleatórios em um cubo de lado 20 unidades
 
 Abaixo podemos ver a tabela com as métricas obtidas para o experimento com 60 pontos aleatórios:
 
@@ -278,7 +273,7 @@ Em seguida, as imagens geradas para o experimento:
 
 *Figura 5 – Exemplo de fecho convexo 3D para uma nuvem de 60 pontos aleatórios. À esquerda, a nuvem de pontos completa; à direita, apenas o fecho convexo é exibido.*
 
-### Experimento 2 - 120 pontos aleatórios em um cubo de lado 20 unidades.
+### Experimento 2 - 120 pontos aleatórios em um cubo de lado 20 unidades
 
 Abaixo podemos ver a tabela com as métricas obtidas para o experimento com 120 pontos aleatórios:
 
@@ -339,7 +334,7 @@ Por fim, analisamos de forma teórica e qualitativa os resultados da implementa�
 - O algoritmo incremental implementado é didaticamente valioso e relativamente simples de compreender e implementar [1], porém apresenta limitações de performance em comparação com implementações otimizadas;
 - Algoritmos como o Quickhull, combinados com estruturas de dados adequadas e técnicas de robustez numérica, são a escolha preferencial em aplicações reais, o que explica seu uso em bibliotecas amplamente adotadas como a SciPy [5,7].
 
-Como trabalhos futuros, seria natural implementar o algoritmo Quickhull 3D para uma comparação direta entre implementações próprias de ambos os paradigmas. Outras extensões interessantes incluem: aprofundar o estudo da relação entre fechos convexos e outros problemas de geometria computacional, como triangulação de Delaunay via *lifting* para dimensão 4; investigar implementações em bibliotecas de geometria robustas (como CGAL), comparando-as com versões didáticas em termos de desempenho e robustez; e estudar fechos convexos em dimensões maiores, que aparecem em problemas de otimização convexa e aprendizado de máquina.
+Como trabalhos futuros, seria natural implementar o algoritmo Quickhull 3D para uma comparação direta entre implementações próprias de ambos os paradigmas.
 
 ## Referências
 
