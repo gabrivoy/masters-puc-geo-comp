@@ -12,14 +12,22 @@
   - [O que é o Fecho Convexo?](#o-que-é-o-fecho-convexo)
   - [O Problema do Fecho Convexo 3D](#o-problema-do-fecho-convexo-3d)
 - [Descrição Matemática](#descrição-matemática)
+  - [Convexidade em 3D](#convexidade-em-3d)
+  - [Definição de Fecho Convexo](#definição-de-fecho-convexo)
+  - [Representação Poliedral do Fecho Convexo 3D](#representação-poliedral-do-fecho-convexo-3d)
+  - [Teste de Orientação em 3D (Volume Assinado)](#teste-de-orientação-em-3d-volume-assinado)
 - [Algoritmos para Fecho Convexo 3D](#algoritmos-para-fecho-convexo-3d)
   - [Considerações de Complexidade](#considerações-de-complexidade)
   - [Algoritmo Incremental 3D](#algoritmo-incremental-3d)
   - [Estrutura de Dados da Implementação](#estrutura-de-dados-da-implementação)
   - [Pseudocódigo do Algoritmo Implementado](#pseudocódigo-do-algoritmo-implementado)
 - [Resultados e Análises](#resultados-e-análises)
-  - [Análise Teórica](#análise-teórica)
-  - [Experimentos e Observações Práticas (Visão Qualitativa)](#experimentos-e-observações-práticas-visão-qualitativa)
+  - [Experimento 1 - 60 pontos aleatórios em um cubo de lado 20 unidades](#experimento-1---60-pontos-aleatórios-em-um-cubo-de-lado-20-unidades)
+  - [Experimento 2 - 120 pontos aleatórios em um cubo de lado 20 unidades](#experimento-2---120-pontos-aleatórios-em-um-cubo-de-lado-20-unidades)
+  - [Experimento 3 - Comparação de Performance com SciPy (Quickhull)](#experimento-3---comparação-de-performance-com-scipy-quickhull)
+- [Conclusão](#conclusão)
+- [Referências](#referências)
+
 
 ## Introdução e motivação
 
@@ -91,7 +99,7 @@ Apesar dessas dificuldades, bibliotecas modernas (como Qhull, CGAL, SciPy, entre
 
 Nesta seção são apresentados os conceitos matemáticos fundamentais para definir convexidade e fecho convexo em $\mathbb{R}^3$, assim como algumas ferramentas algébricas usadas pelos algoritmos clássicos.
 
-### Convexidade em $\mathbb{R}^3$
+### Convexidade em 3D
 
 Considere um subconjunto $C \subset \mathbb{R}^3$. Dizemos que $C$ é convexo se, para quaisquer dois pontos $x, y \in C$, todo o segmento de reta que conecta $x$ a $y$ também está contido em $C$. Em notação matemática:
 
@@ -109,17 +117,17 @@ Um conjunto $C$ é convexo se e somente se contém todas as combinações convex
 
 ### Definição de Fecho Convexo
 
-Dado um conjunto finito de pontos $S = \{p_1, p_2, \dots, p_n\} \subset \mathbb{R}^3$, o fecho convexo de $S$, denotado por $\operatorname{conv}(S)$, é definido como o menor conjunto convexo que contém $S$. Equivalentemente [1,2]:
+Dado um conjunto finito de pontos $S = \{p_1, p_2, \dots, p_n\} \subset \mathbb{R}^3$, o fecho convexo de $S$, denotado por $\text{conv}(S)$, é definido como o menor conjunto convexo que contém $S$. Equivalentemente [1,2]:
 
 $$
-\operatorname{conv}(S) = \left\{ \sum_{i=1}^{n} \lambda_i p_i \;\middle|\; \lambda_i \ge 0,\; \sum_{i=1}^{n} \lambda_i = 1 \right\}.
+\text{conv}(S) = \Bigg\{ \sum_{i=1}^{n} \lambda_i p_i \mid \lambda_i \ge 0,\; \sum_{i=1}^{n} \lambda_i = 1 \Bigg\}.
 $$
 
 Outra caracterização importante é:
 
 $$
-\operatorname{conv}(S) = \bigcap \{ C \subset \mathbb{R}^3 \mid C \text{ é convexo e } S \subseteq C \},
-$$,
+\text{conv}(S) = \bigcap \{ C \subset \mathbb{R}^3 \mid C \text{ é convexo e } S \subseteq C \},
+$$
 
 isto é, o fecho convexo é a interseção de todos os conjuntos convexos que contêm $S$. Essas definições são equivalentes e muito usadas tanto na teoria quanto na prática [2,3].
 
@@ -127,7 +135,7 @@ isto é, o fecho convexo é a interseção de todos os conjuntos convexos que co
 
 Em $\mathbb{R}^3$, o fecho convexo de um conjunto finito de pontos é um poliedro convexo. Um poliedro convexo pode ser descrito de duas maneiras principais [1]:
 
-- Representação por vértices (forma V): como o fecho convexo de um conjunto finito de pontos $V = \{v_1, \dots, v_h\}$, ou seja, $P = \operatorname{conv}(V)$;
+- Representação por vértices (forma V): como o fecho convexo de um conjunto finito de pontos $V = \{v_1, \dots, v_h\}$, ou seja, $P = \text{conv}(V)$;
 - Representação por semi-espaços (forma H): como interseção finita de semi-espaços do tipo:
   $$
   H_i = \{ x \in \mathbb{R}^3 \mid a_i \cdot x \le b_i \},
@@ -289,6 +297,8 @@ Abaixo podemos ver a tabela com as métricas obtidas para o experimento com 120 
 Em seguida, as imagens geradas para o experimento:
 
 ![Experimento 02 - 120 pontos](resources/exp_02.png "Figura 6 – Exemplo de fecho convexo 3D para uma nuvem de 120 pontos aleatórios. À esquerda, a nuvem de pontos completa; à direita, apenas o fecho convexo é exibido.")
+
+*Figura 6 – Exemplo de fecho convexo 3D para uma nuvem de 120 pontos aleatórios. À esquerda, a nuvem de pontos completa; à direita, apenas o fecho convexo é exibido.*
 
 ### Experimento 3 - Comparação de Performance com SciPy (Quickhull)
 
